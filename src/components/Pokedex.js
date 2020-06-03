@@ -4,8 +4,6 @@ import ListadoPokemon from './ListadoPokemon';
 
 const Pokedex = () => {
 
-
-
     const [valorBusqueda, setValorBusqueda] = useState("")
     const [pokemones, setPokemones] = useState([])
     const [matchPokemones, setMatchPokemones] = useState([])
@@ -24,14 +22,14 @@ const Pokedex = () => {
         debugger
         console.log(pokemones)
         const buscarPokemones = () => {
-            let pokemonesEncontrados = pokemones.filter(pokemon => pokemon.name.indexOf(valorBusqueda.toLowerCase()) > -1)
+            let pokemonesEncontrados = pokemones.filter(pokemon => pokemon.name.indexOf(valorBusqueda.toLowerCase()) > -1 && pokemon !== "")
             return pokemonesEncontrados
         }
         let test = buscarPokemones()
         
 
         setMatchPokemones(test)
-    }, [valorBusqueda])
+    }, [valorBusqueda, pokemones])
 
     return (
         <>

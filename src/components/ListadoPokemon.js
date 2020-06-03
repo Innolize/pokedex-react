@@ -10,8 +10,8 @@ const CartaPokemon = ({ indicePokemon, pokemon }) => {
 
   return (
     <>
-      <div style={{ backgroundColor: "gray", height: "160px", width: "160px", borderStyle: "solid", borderWidth: "1px", borderColor: "white" }}>
-        <Link to={`/pokemon/${pokemon}`}>
+      <div style={{ marginTop: "5px", backgroundColor: "gray", height: "160px", width: "160px", borderStyle: "solid", borderWidth: "1px", borderColor: "white" }}>
+        <Link to={`/pokemon/${pokemon}/${indicePokemon}`}>
           <img src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${numeroTresCifras(indicePokemon)}.png`} style={{ height: "120px" }} alt={pokemon}></img>
 
           {pokemon}
@@ -35,8 +35,6 @@ const ListadoPokemon = ({ listaPokemones }) => {
         listaPokemones.map((pokemon, indice) =>
           <CartaPokemon indicePokemon={Number(obtenerIDdeURL(pokemon.url))} pokemon={pokemon.name} key={indice}></CartaPokemon>
         )}
-
-
     </div>
   );
 }
