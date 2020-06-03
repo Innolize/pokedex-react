@@ -2,8 +2,7 @@ import React from 'react';
 // import Header from './components/Header';
 import styled from '@emotion/styled';
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
-import BuscadorPokemon from './components/BuscadorPokemon';
-import ListadoPokemon from './components/ListadoPokemon';
+import Pokedex from './components/Pokedex';
 
 const Header = styled.div`
 height:10vh;
@@ -46,8 +45,7 @@ function App() {
           </Header>
           <Layout>
             <Route path="/" exact >
-              <BuscadorPokemon></BuscadorPokemon>
-              <ListadoPokemon></ListadoPokemon>
+              <Pokedex></Pokedex>
 
             </Route>
           </Layout>
