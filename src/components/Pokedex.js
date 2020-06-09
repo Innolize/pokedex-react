@@ -19,10 +19,10 @@ const Pokedex = () => {
     }, [])
 
     useEffect(() => {
-        debugger
+        
         console.log(pokemones)
         const buscarPokemones = () => {
-            let pokemonesEncontrados = pokemones.filter(pokemon => pokemon.name.indexOf(valorBusqueda.toLowerCase()) > -1 && pokemon !== "")
+            let pokemonesEncontrados = pokemones.filter(pokemon => pokemon.name.indexOf(valorBusqueda.toLowerCase()) > -1 && valorBusqueda !== "")
             return pokemonesEncontrados
         }
         let test = buscarPokemones()

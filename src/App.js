@@ -1,9 +1,8 @@
 import React from 'react';
-// import Header from './components/Header';
 import styled from '@emotion/styled';
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
 import Pokedex from './components/Pokedex';
-import Pokemon from './components/Pokemon';
+import Pokemon from './components/Pokemon/Pokemon';
 
 const Header = styled.div`
 height:10vh;
@@ -28,6 +27,7 @@ width: 100%;
 align-items: center;
 margin: auto;
 text-align:center;
+font-family: 'Roboto', sans-serif;
 `
 
 const Wrapper = styled.div`
@@ -42,14 +42,16 @@ function App() {
       <Wrapper>
         <Router>
           <Header>
-            <Link to="/">Home</Link>
+            <Link to="/">
+              <h3>Home</h3>
+            </Link>
           </Header>
           <Layout>
             <Route path="/" exact >
               <Pokedex></Pokedex>
             </Route>
-            <Route path="/pokemon/:pokemonElegido" >
-              <Pokemon pokemon={"bulbasaur"} id={1}></Pokemon>
+            <Route path="/pokemon/:pokemonSeleccionado" >
+              <Pokemon></Pokemon>
             </Route>
           </Layout>
 
