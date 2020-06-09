@@ -2,7 +2,6 @@ import React from 'react'
 import { useFetchReducer } from '../../customHooks/useFetch';
 import { fetchArrayStats } from '../../utilidades'
 import { Spinner } from 'react-bootstrap'
-import moduleName from '@emotion/styled';
 
 const Stats = ({ stats }) => {
     debugger
@@ -21,7 +20,7 @@ const Stats = ({ stats }) => {
     if (data)
         console.log(data)
     return (
-        data.map((stat, i) => <p><strong>{stat}</strong>:{stats[i].base_stat}</p>)
+        data.map((stat, i) => <p key={i}><strong>{stat}</strong>:{stats[i].base_stat}</p>)
     )
 }
 

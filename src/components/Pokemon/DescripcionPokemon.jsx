@@ -8,9 +8,10 @@ export const DescripcionPokemon = ({ id }) => {
     const { data, loading, error } = useFetchReducer(obtenerDescripcion, id)
 
     if (loading)
-        return (<Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-        </Spinner>)
+        return (
+            <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+            </Spinner>)
     if (error)
         return (<div>error</div>)
     if (data)

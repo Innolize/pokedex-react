@@ -6,6 +6,8 @@ import { buscarPokemon } from '../../utilidades';
 import DescripcionPokemon from './DescripcionPokemon';
 import TiposTraducidos from './tipos';
 import Stats from './Stats'
+import HabilidadPokemon from './HabilidadPokemon'
+
 
 const Pokemon = ({ pokemon, id }) => {
   const { pokemonSeleccionado } = useParams()
@@ -30,7 +32,6 @@ const Pokemon = ({ pokemon, id }) => {
   return (
 
     <Container style={{ width: "80%", }}>
-      <h1>{data.name}</h1>
       <Row style={{ width: "100%" }}>
         <Col>
           <img style={{ width: "100%" }} src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${numeroTresCifras(data.id)}.png`} alt={pokemon}></img>
@@ -42,12 +43,18 @@ const Pokemon = ({ pokemon, id }) => {
           <TiposTraducidos tipos={data.types}></TiposTraducidos>
           <DescripcionPokemon id={data.id}></DescripcionPokemon>
 
-          <Row>
+          <Row style={{paddingTop: "10px"}}>
             <Col>
               <Stats stats={data.stats}></Stats>
             </Col>
             <Col>
-              <Stats stats={data.stats}></Stats>
+              <div>
+                <p><strong>Peso:</strong> {data.weight / 10}Kg</p>
+              </div>
+              <div><strong>Altura:</strong> {data.height / 10} m</div>
+              <div>
+                <HabilidadPokemon habilidades={data.abilities}></HabilidadPokemon>
+              </div>
             </Col>
           </Row>
 

@@ -20,7 +20,6 @@ export const obtenerMiniDescripcion = async (id) => {
     return miniDescripcion
 }
 
-
 export const buscarPokemon = async (pokemon) => {
     const URL_BASE_POKEMON = "https://pokeapi.co/api/v2/pokemon/"
     const datos = await fetch(`${URL_BASE_POKEMON}${pokemon}`)
@@ -29,6 +28,8 @@ export const buscarPokemon = async (pokemon) => {
     }
     return datos.json()
 }
+
+
 
 export const fetchArrayTipos = async (array) => {
     let tipos = await Promise.all(
@@ -57,5 +58,20 @@ export const fetchArrayStats = async (array) => {
         })
     )
     return stats
+
+}
+
+export const fetchArrayHabilidades = async (array) => {
+    console.log(array)
+    let habilidades = await Promise.all(
+        array.map(async habilidad => {
+            let r = await fetch(habilidad.ability.url)
+            let response = await r.json()
+            const temporal = response.names.find((x) =>
+                x.language.name === "es");
+            return temporal.name
+        })
+    )
+    return habilidades
 
 }
