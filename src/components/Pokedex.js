@@ -11,7 +11,6 @@ const Pokedex = () => {
     const POKEMONES_POR_PAGINA = 20
     const TOTAL_POKEMONES = "807"
     const [offset, setOffset] = useState(0)
-    const [paginaActual, SetPaginaActual] = useState(0)
     const [pokemonesPokedex, setPokemonesPokedex] = useState([])
 
     useEffect(() => {
@@ -41,21 +40,13 @@ const Pokedex = () => {
         const fetchPokemonsPokedex = async () => {
             console.log(offset)
 
-            debugger
             const respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${POKEMONES_POR_PAGINA}&offset=${offset}`)
             const r = await respuesta.json()
             console.log(r.results)
             setPokemonesPokedex(r)
         }
         fetchPokemonsPokedex()
-        console.log("asd")
     }, [offset])
-
-
-
-
-
-
 
     return (
         <>
@@ -67,12 +58,17 @@ const Pokedex = () => {
 
             <ListadoPokemon listaPokemones={matchPokemones}
             />
-            <Paginador
-                botonAnterior={() => { offset !== 0 && setOffset(offset - POKEMONES_POR_PAGINA) }}
-                botonSiguiente={() => { offset < 807 && setOffset(offset + POKEMONES_POR_PAGINA) }}
+            {valorBusqueda === "" &&
+                <Paginador
+                    botonAnterior={() => { offset !== 0 && setOffset(offset - POKEMONES_POR_PAGINA) }}
+                    botonSiguiente={() => { offset < 807 && setOffset(offset + POKEMONES_POR_PAGINA) }}
+                    totalPokemones={TOTAL_POKEMONES}
+                    pokemonesPorPagina={POKEMONES_POR_PAGINA}
+                    offset={offset}
+                    itemOnClick={setOffset}
 
-            />
-
+                />
+            }
 
         </>
     )
