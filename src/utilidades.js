@@ -31,17 +31,17 @@ export const buscarPokemon = async (pokemon) => {
 }
 
 export const fetchArrayTipos = async (array) => {
-    debugger
-    console.log(array)
+    let tipos = await Promise.all(
+        array.map(async type => {
+            let r = await fetch(type.type.url)
+            let response = await r.json()
+            const temporal = response.names.find((x) =>
+                x.language.name === "es");
+            return temporal.name
 
-    let traduccionArray = []
+        })
+    )
 
-    for (let URL of array) {
-        const r = await fetch(URL.type.url)
-        const rJSON = await r.json()
-        const temporal = rJSON.names.find((x) =>
-            x.language.name === "es");
-        traduccionArray.push(temporal.name)
-    }
-    return traduccionArray
+    return tipos
+
 }

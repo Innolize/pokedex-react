@@ -5,7 +5,7 @@ import { Spinner } from 'react-bootstrap';
 
 
 const TiposTraducidos = ({ tipos }) => {
-    console.log(tipos)
+    debugger
     const { data, loading, error } = useFetchReducer(fetchArrayTipos, tipos)
 
 
@@ -20,7 +20,7 @@ const TiposTraducidos = ({ tipos }) => {
         console.log(data)
     return (
         <div className="d-flex">
-            {data.map((x, i) => <p key={i}>{x}</p>)}
+            {data.map((x, i) => <p key={i} style={{paddingRight:"5px"}}>{x}</p>)}
         </div>
     )
 }

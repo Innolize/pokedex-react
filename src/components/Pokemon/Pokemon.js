@@ -37,7 +37,7 @@ const Pokemon = ({ pokemon, id }) => {
           <div style={{ margin: "1em" }}>
             <h3>Nº{data.id} {data.name}</h3>
           </div>
-          <TiposTraducidos tipos={data.types}></TiposTraducidos>
+          { <TiposTraducidos tipos={data.types}></TiposTraducidos>}
           <DescripcionPokemon id={data.id}></DescripcionPokemon>
 
 

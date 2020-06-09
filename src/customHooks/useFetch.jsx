@@ -16,14 +16,15 @@ const fetchReducer = (state, action) => {
 }
 
 
-export const useFetchReducer = ( fetchCallback, param, opcional) => {
+export const useFetchReducer = ( fetchCallback, param) => {
     const [state, dispatch] = useReducer(fetchReducer, initialState);
 
     useEffect(() => {
         const test = async () => {
             dispatch({ type: 'LOAD' })
             try {
-                const datos = await fetchCallback(param, opcional)
+                console.log("loop")
+                const datos = await fetchCallback(param)
                 dispatch({ type: 'SUCCESS', payload: datos })
             } catch (error) {
                 console.log(error)
