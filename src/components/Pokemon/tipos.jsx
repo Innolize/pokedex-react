@@ -5,7 +5,6 @@ import { Spinner } from 'react-bootstrap';
 
 
 const TiposTraducidos = ({ tipos }) => {
-    debugger
     const { data, loading, error } = useFetchReducer(fetchArrayTipos, tipos)
 
 
@@ -15,7 +14,6 @@ const TiposTraducidos = ({ tipos }) => {
         </Spinner>)
     if (error)
         return (<div>error</div>)
-    debugger
     if (data)
         console.log(data)
     return (

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useParams } from 'react-router-dom'
 import { useFetchReducer } from '../../customHooks/useFetch'
 import { buscarPokemon } from '../../utilidades';
 import DescripcionPokemon from './DescripcionPokemon';
 import TiposTraducidos from './tipos';
+import Stats from './Stats'
 
 const Pokemon = ({ pokemon, id }) => {
   const { pokemonSeleccionado } = useParams()
@@ -24,7 +25,8 @@ const Pokemon = ({ pokemon, id }) => {
     return (<div>error</div>)
 
   if (data)
-    console.log(data)
+    debugger
+  console.log(data)
   return (
 
     <Container style={{ width: "80%", }}>
@@ -37,8 +39,18 @@ const Pokemon = ({ pokemon, id }) => {
           <div style={{ margin: "1em" }}>
             <h3>Nº{data.id} {data.name}</h3>
           </div>
-          { <TiposTraducidos tipos={data.types}></TiposTraducidos>}
+          <TiposTraducidos tipos={data.types}></TiposTraducidos>
           <DescripcionPokemon id={data.id}></DescripcionPokemon>
+
+          <Row>
+            <Col>
+              <Stats stats={data.stats}></Stats>
+            </Col>
+            <Col>
+              <Stats stats={data.stats}></Stats>
+            </Col>
+          </Row>
+
 
 
         </Col>

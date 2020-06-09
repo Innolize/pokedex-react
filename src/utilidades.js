@@ -41,7 +41,21 @@ export const fetchArrayTipos = async (array) => {
 
         })
     )
-
     return tipos
+
+}
+
+export const fetchArrayStats = async (array) => {
+    console.log(array)
+    let stats = await Promise.all(
+        array.map(async type => {
+            let r = await fetch(type.stat.url)
+            let response = await r.json()
+            const temporal = response.names.find((x) =>
+                x.language.name === "es");
+            return temporal.name
+        })
+    )
+    return stats
 
 }
