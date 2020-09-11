@@ -23,10 +23,14 @@ const Paginador = ({ botonAnterior, botonSiguiente, totalPokemones, pokemonesPor
 
     return (
         <>
-            <Button onClick={botonAnterior}>Anterior</Button>
-            <Button onClick={botonSiguiente}>Siguiente</Button>
 
-            <ul style={{ display: "flex", justifyContent: "center", listStyle: "none" }}>{items}</ul>
+
+
+            <ul style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", listStyle: "none" }}>
+                <Button onClick={botonAnterior}>Anterior</Button>
+                {items}
+                <Button onClick={botonSiguiente}>Siguiente</Button>
+            </ul>
 
 
         </>

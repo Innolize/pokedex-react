@@ -10,22 +10,37 @@ grid-row-gap: 3em;
 grid-template-columns: repeat(auto-fill, minMax(0,200px));
 `
 
+const ContenedorCarta = styled.div`
+  margin-top: 5px;
+  background-color: gray;
+  height: 160px;
+  width: 160px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: white; 
+`
+
+const ImagenEstilada = styled.img`
+  height: 120px;
+`
+
 const CartaPokemon = ({ indicePokemon, pokemon }) => {
 
-  const numeroTresCifras = (numero) => {
-    let numeroConvertido = ("000" + numero).slice(-3)
+  const obtenerNumeroPokemon = () => {
+    let numeroConvertido = ("000" + indicePokemon).slice(-3)
     return numeroConvertido
   }
 
+  const numero = obtenerNumeroPokemon()
   return (
     <>
-      <div style={{ marginTop: "5px", backgroundColor: "gray", height: "160px", width: "160px", borderStyle: "solid", borderWidth: "1px", borderColor: "white" }}>
+      <ContenedorCarta>
         <Link style={{ color: "black" }} to={`/pokemon/${pokemon}`}>
-          <img src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${numeroTresCifras(indicePokemon)}.png`} style={{ height: "120px" }} alt={pokemon}></img>
+          <ImagenEstilada src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${numero}.png`} alt={pokemon}></ImagenEstilada>
 
           <p><strong>#{indicePokemon} {pokemon}</strong></p>
         </Link>
-      </div>
+      </ContenedorCarta>
     </>
   )
 }
