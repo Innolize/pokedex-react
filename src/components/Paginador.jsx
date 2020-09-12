@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Pagination } from 'react-bootstrap';
+import styled from '@emotion/styled'
+
+const PaginadorLista = styled.ul`
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0px;
+`
 
 const Paginador = ({ botonAnterior, botonSiguiente, totalPokemones, pokemonesPorPagina, itemOnClick, offset }) => {
     const totalPaginas = Math.ceil(totalPokemones / pokemonesPorPagina)
@@ -23,14 +32,11 @@ const Paginador = ({ botonAnterior, botonSiguiente, totalPokemones, pokemonesPor
 
     return (
         <>
-
-
-
-            <ul style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", listStyle: "none" }}>
+            <PaginadorLista>
                 <Button onClick={botonAnterior}>Anterior</Button>
                 {items}
                 <Button onClick={botonSiguiente}>Siguiente</Button>
-            </ul>
+            </PaginadorLista>
 
 
         </>

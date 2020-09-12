@@ -23,7 +23,7 @@ const Pokedex = () => {
     }, [])
 
     useEffect(() => {
-        if (valorBusqueda !== "") {
+        if (valorBusqueda && valorBusqueda.length > 1) {
             const buscarPokemones = () => {
                 let pokemonesEncontrados = pokemones.filter(pokemon => pokemon.name.indexOf(valorBusqueda.toLowerCase()) > -1 && valorBusqueda !== "")
                 return pokemonesEncontrados
