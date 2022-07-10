@@ -1,38 +1,65 @@
-import React, { useState } from 'react';
-import { Button, Pagination } from 'react-bootstrap';
+import styled from "@emotion/styled";
+import React, { useState } from "react";
+import { Button, Pagination } from "react-bootstrap";
 
-const Paginador = ({ botonAnterior, botonSiguiente, totalPokemones, pokemonesPorPagina, itemOnClick, offset }) => {
-    const totalPaginas = Math.ceil(totalPokemones / pokemonesPorPagina)
-    const [paginaActual, SetPaginaActual] = useState(1)
+const ContenedorDeItems = styled.ul`
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  flex-wrap: wrap;
+`;
 
-    let items = [];
+const Paginador = ({
+  botonAnterior,
+  botonSiguiente,
+  totalPokemones,
+  pokemonesPorPagina,
+  itemOnClick,
+  offset,
+}) => {
+  const totalPaginas = Math.ceil(totalPokemones / pokemonesPorPagina);
+  const [paginaActual, SetPaginaActual] = useState(1);
 
-    const manejadorItemOnclick = (number) => {
-        itemOnClick(pokemonesPorPagina * (number - 1))
-        SetPaginaActual(number)
-        console.log(paginaActual)
+  let items = [];
+
+  const manejadorItemOnclick = (number) => {
+    itemOnClick(pokemonesPorPagina * (number - 1));
+    SetPaginaActual(number);
+  };
+
+  for (let number = 1; number <= totalPaginas; number++) {
+    items.push(
+      <Pagination.Item
+        key={number}
+        active={number === paginaActual}
+        onClick={() => manejadorItemOnclick(number)}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
+
+  const botonAnteriorOnClick = () => {
+    if (paginaActual !== 1) {
+      botonAnterior();
+      SetPaginaActual(paginaActual - 1);
     }
+  };
 
-    for (let number = 1; number <= totalPaginas; number++) {
-        items.push(
-            <Pagination.Item key={number} active={number === paginaActual} onClick={() => manejadorItemOnclick(number)}>
-                {number}
-            </Pagination.Item>,
-        );
+  const botonSiguienteOnClick = () => {
+    if (paginaActual !== totalPaginas) {
+      botonSiguiente();
+      SetPaginaActual(paginaActual + 1);
     }
+  };
 
-    return (
-        <>
-            <Button onClick={botonAnterior}>Anterior</Button>
-            <Button onClick={botonSiguiente}>Siguiente</Button>
+  return (
+    <ContenedorDeItems>
+      <Button onClick={botonAnteriorOnClick}>Anterior</Button>
+      {items}
+      <Button onClick={botonSiguienteOnClick}>Siguiente</Button>
+    </ContenedorDeItems>
+  );
+};
 
-            <ul style={{ display: "flex", justifyContent: "center", listStyle: "none" }}>{items}</ul>
-
-
-        </>
-    )
-}
-
-
-
-export default Paginador
+export default Paginador;
