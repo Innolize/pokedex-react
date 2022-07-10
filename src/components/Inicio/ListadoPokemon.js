@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
-import { numeroTresCifras } from "../utils/numeroTresCifras";
-import { primerLetraMayus } from "../utils/primerLetraMayus";
-import { obtenerIDdeURL } from "../utils/obtenerIDdeURL";
+import { numeroTresCifras } from "../../utils/numeroTresCifras";
+import { primerLetraMayus } from "../../utils/primerLetraMayus";
+import { obtenerIDdeURL } from "../../utils/obtenerIDdeURL";
 
 const ContenedorListado = styled.div`
   margin: 1em;

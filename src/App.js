@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import Pokedex from "./components/Pokedex";
+import Pokedex from "./components/Inicio/Pokedex";
 import Pokemon from "./components/Pokemon/Pokemon";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const Header = styled.div`
-  height: 10vh;
   width: 100%;
   background: green;
   display: flex;
@@ -39,6 +38,10 @@ const Wrapper = styled.div`
   min-height: 100vh;
 `;
 
+const Inicio = styled.h3`
+  margin:10px;
+`
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -49,7 +52,7 @@ function App() {
           <Router>
             <Header>
               <Link to="/">
-                <h3>Home</h3>
+                <Inicio>Inicio</Inicio>
               </Link>
             </Header>
             <Layout>

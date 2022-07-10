@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { getPokemons } from "../api/getPokemons";
+import { getPokemons } from "../../api/getPokemons";
 import BuscadorPokemon from "./BuscadorPokemon";
 import ListadoPokemon from "./ListadoPokemon";
 import Paginador from "./Paginador";
