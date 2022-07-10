@@ -2,12 +2,12 @@ import React from "react";
 import styled from "@emotion/styled";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
   NavLink,
 } from "react-router-dom";
 import Pokedex from "./components/Pokedex";
 import Pokemon from "./components/Pokemon/Pokemon";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const Header = styled.div`
   height: 10vh;
@@ -41,26 +41,30 @@ const Wrapper = styled.div`
   min-height: 100vh;
 `;
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
     <>
-      <Wrapper>
-        <Router>
-          <Header>
-            <Link to="/">
-              <h3>Home</h3>
-            </Link>
-          </Header>
-          <Layout>
-            <Route path="/" exact>
-              <Pokedex></Pokedex>
-            </Route>
-            <Route path="/pokemon/:pokemonSeleccionado">
-              <Pokemon></Pokemon>
-            </Route>
-          </Layout>
-        </Router>
-      </Wrapper>
+      <QueryClientProvider client={queryClient}>
+        <Wrapper>
+          <Router>
+            <Header>
+              <Link to="/">
+                <h3>Home</h3>
+              </Link>
+            </Header>
+            <Layout>
+              <Route path="/" exact>
+                <Pokedex></Pokedex>
+              </Route>
+              <Route path="/pokemon/:pokemonSeleccionado">
+                <Pokemon></Pokemon>
+              </Route>
+            </Layout>
+          </Router>
+        </Wrapper>
+      </QueryClientProvider>
     </>
   );
 }
