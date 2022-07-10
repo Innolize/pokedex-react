@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import Pokedex from "./components/Pokedex";
 import Pokemon from "./components/Pokemon/Pokemon";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -33,6 +29,8 @@ const Layout = styled.div`
   margin: auto;
   text-align: center;
   font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Wrapper = styled.div`
