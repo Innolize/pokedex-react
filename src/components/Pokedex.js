@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { getPokemons } from "../api/getPokemons";
 import BuscadorPokemon from "./BuscadorPokemon";
 import ListadoPokemon from "./ListadoPokemon";
 import Paginador from "./Paginador";
@@ -12,13 +13,11 @@ const Pokedex = () => {
   const [offset, setOffset] = useState(0);
   const [pokemonesPokedex, setPokemonesPokedex] = useState([]);
 
+  // Busca pokemones al montar componente
   useEffect(() => {
     const fetchPokemons = async () => {
-      const respuesta = await fetch(
-        `https://pokeapi.co/api/v2/pokemon?limit=${TOTAL_POKEMONES}&offset=0`
-      );
-      const rJSON = await respuesta.json();
-      setPokemones(rJSON.results);
+      const respuesta = await getPokemons(TOTAL_POKEMONES);
+      setPokemones(respuesta);
     };
     fetchPokemons();
   }, []);
@@ -32,21 +31,27 @@ const Pokedex = () => {
     setMatchPokemones(pokemonesEncontrados);
   }, [pokemones, valorBusqueda]);
 
-  useEffect(() => {
-    if (valorBusqueda !== "") {
-      buscarPokemons();
-    } else {
-      setMatchPokemones(pokemonesPokedex.results);
-    }
-  }, [valorBusqueda, pokemones, pokemonesPokedex, buscarPokemons]);
+
+  //busca pokemones segun el valor de busqueda, con timeout
+  //de medio segundo para no renderizar mientras se escribe
 
   useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (valorBusqueda !== "") {
+        buscarPokemons();
+      } else {
+        setMatchPokemones(pokemonesPokedex);
+      }
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [valorBusqueda, pokemonesPokedex, buscarPokemons]);
+
+  //busca pokemones dependiendo de paginacion
+  
+  useEffect(() => {
     const fetchPokemonsPokedex = async () => {
-      const respuesta = await fetch(
-        `https://pokeapi.co/api/v2/pokemon?limit=${POKEMONES_POR_PAGINA}&offset=${offset}`
-      );
-      const r = await respuesta.json();
-      setPokemonesPokedex(r);
+      const respuesta = await getPokemons(POKEMONES_POR_PAGINA, offset);
+      setPokemonesPokedex(respuesta);
     };
     fetchPokemonsPokedex();
   }, [offset]);
@@ -54,13 +59,8 @@ const Pokedex = () => {
   return (
     <>
       <BuscadorPokemon
-        onClick={() => {
-          console.log(pokemones[411]);
-        }}
         value={valorBusqueda}
-        onChangeBusqueda={(e) => {
-          setValorBusqueda(e.target.value);
-        }}
+        onChangeBusqueda={(e) => setValorBusqueda(e.target.value)}
       />
 
       <ListadoPokemon listaPokemones={matchPokemones} />
