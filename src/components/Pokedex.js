@@ -31,7 +31,6 @@ const Pokedex = () => {
     setMatchPokemones(pokemonesEncontrados);
   }, [pokemones, valorBusqueda]);
 
-
   //busca pokemones segun el valor de busqueda, con timeout
   //de medio segundo para no renderizar mientras se escribe
 
@@ -47,7 +46,7 @@ const Pokedex = () => {
   }, [valorBusqueda, pokemonesPokedex, buscarPokemons]);
 
   //busca pokemones dependiendo de paginacion
-  
+
   useEffect(() => {
     const fetchPokemonsPokedex = async () => {
       const respuesta = await getPokemons(POKEMONES_POR_PAGINA, offset);
@@ -56,6 +55,13 @@ const Pokedex = () => {
     fetchPokemonsPokedex();
   }, [offset]);
 
+  const botonAnteriorOnClick = () => {
+    offset !== 0 && setOffset(offset - POKEMONES_POR_PAGINA);
+  };
+
+  const botonSiguienteOnClick = () => {
+    offset < 807 && setOffset(offset + POKEMONES_POR_PAGINA);
+  };
   return (
     <>
       <BuscadorPokemon
@@ -66,12 +72,8 @@ const Pokedex = () => {
       <ListadoPokemon listaPokemones={matchPokemones} />
       {valorBusqueda === "" && (
         <Paginador
-          botonAnterior={() => {
-            offset !== 0 && setOffset(offset - POKEMONES_POR_PAGINA);
-          }}
-          botonSiguiente={() => {
-            offset < 807 && setOffset(offset + POKEMONES_POR_PAGINA);
-          }}
+          botonAnterior={botonAnteriorOnClick}
+          botonSiguiente={botonSiguienteOnClick}
           totalPokemones={TOTAL_POKEMONES}
           pokemonesPorPagina={POKEMONES_POR_PAGINA}
           offset={offset}
