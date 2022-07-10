@@ -28,7 +28,8 @@ const Pokemon = ({ pokemon, id }) => {
     );
   if (error) return <div>error</div>;
 
-  if (data) debugger;
+  if (data);
+  console.log("esto quiero:", data);
   return (
     <Container style={{ width: "80%" }}>
       <Row style={{ width: "100%" }}>
