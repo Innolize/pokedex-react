@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
+import { numeroTresCifras } from "../utils/numeroTresCifras";
+import { primerLetraMayus } from "../utils/primerLetraMayus";
+import { obtenerIDdeURL } from "../utils/obtenerIDdeURL";
 
 const ContenedorListado = styled.div`
   margin: 1em;
@@ -9,54 +12,47 @@ const ContenedorListado = styled.div`
   justify-content: center;
 `;
 
+const ContenedorCartaPokemon = styled.div`
+  margin: 2.5px;
+  background-color: gray;
+  height: 160px;
+  width: 160px;
+  border: 1px solid white;
+`;
+
+const NombrePokemon = styled.p`
+  font-weight: bold;
+`;
+
+const ImagenPokemon = styled.img`
+  height: 120px;
+`;
+
 const CartaPokemon = ({ indicePokemon, pokemon }) => {
-  const numeroTresCifras = (numero) => {
-    let numeroConvertido = ("000" + numero).slice(-3);
-    return numeroConvertido;
-  };
-
+  const pokemonFormateado = primerLetraMayus(pokemon);
+  const indicePokemonFormateado = numeroTresCifras(indicePokemon);
   return (
-    <div
-      style={{
-        marginTop: "5px",
-        backgroundColor: "gray",
-        height: "160px",
-        width: "160px",
-        borderStyle: "solid",
-        borderWidth: "1px",
-        borderColor: "white",
-      }}
-    >
+    <ContenedorCartaPokemon>
       <Link style={{ color: "black" }} to={`/pokemon/${pokemon}`}>
-        <img
-          src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${numeroTresCifras(
-            indicePokemon
-          )}.png`}
-          style={{ height: "120px" }}
+        <ImagenPokemon
+          src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${indicePokemonFormateado}.png`}
           alt={pokemon}
-        ></img>
-
-        <p>
-          <strong>
-            #{indicePokemon} {pokemon}
-          </strong>
-        </p>
+        ></ImagenPokemon>
+        <NombrePokemon>
+          {`#${indicePokemon} ${pokemonFormateado}`}
+        </NombrePokemon>
       </Link>
-    </div>
+    </ContenedorCartaPokemon>
   );
 };
 
 const ListadoPokemon = ({ listaPokemones }) => {
-  const obtenerIDdeURL = (url) => {
-    return url.split("/")[6];
-  };
-
   return (
     <ContenedorListado>
       {listaPokemones != null &&
         listaPokemones.map((pokemon, indice) => (
           <CartaPokemon
-            indicePokemon={Number(obtenerIDdeURL(pokemon.url))}
+            indicePokemon={obtenerIDdeURL(pokemon.url)}
             pokemon={pokemon.name}
             key={indice}
           ></CartaPokemon>
