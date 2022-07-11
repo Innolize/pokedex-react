@@ -17,6 +17,8 @@ const TiposTraducidos = ({ tipos }) => {
         <ImagenTipo
           key={i}
           src={`/tipo-iconos/${x.toLowerCase()}.png`}
+          alt={x}
+          title={x}
         ></ImagenTipo>
       ))}
     </ContenedorTipos>

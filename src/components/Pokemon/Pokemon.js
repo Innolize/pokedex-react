@@ -9,6 +9,21 @@ import { primerLetraMayus } from "../../utils/primerLetraMayus";
 import { useQuery } from "react-query";
 import { obtenerPokemon } from "../../api/getPokemon";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
+import styled from "@emotion/styled";
+
+const PokemonContainer = styled(Container)``;
+
+const ContenedorSpinner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
+`;
+
+const StyledSpinner = styled(Spinner)`
+  width: 5rem;
+  height: 5rem;
+`;
 
 const Pokemon = ({ pokemon, id }) => {
   const { pokemonSeleccionado } = useParams();
@@ -18,32 +33,20 @@ const Pokemon = ({ pokemon, id }) => {
 
   if (isLoading) {
     return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "600px",
-        }}
-      >
-        <Spinner
-          style={{ width: "5rem", height: "5rem" }}
-          animation="border"
-          role="status"
-        >
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      </div>
+      <ContenedorSpinner>
+        <StyledSpinner animation="border" role="status">
+        </StyledSpinner>
+      </ContenedorSpinner>
     );
   }
 
   if (isError) {
-    return <div>error</div>;
+    return <div>Error</div>;
   }
 
   if (isSuccess) {
     return (
-      <Container style={{ width: "80%" }}>
+      <PokemonContainer>
         <Row style={{ width: "100%" }}>
           <Col>
             <img
@@ -56,7 +59,7 @@ const Pokemon = ({ pokemon, id }) => {
           </Col>
           <Col
             style={{
-              backgroundColor: "white",
+              backgroundColor: "gray",
               color: "black",
               textAlign: "left",
             }}
@@ -93,7 +96,7 @@ const Pokemon = ({ pokemon, id }) => {
             </Row>
           </Col>
         </Row>
-      </Container>
+      </PokemonContainer>
     );
   }
   return null;
