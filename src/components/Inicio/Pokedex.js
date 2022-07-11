@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useQuery } from "react-query";
-import { getPokemons } from "../../api/getPokemons";
 import { useGetPokemons } from "../../customHooks/useGetPokemons";
 import { useGetPokemonsPagination } from "../../customHooks/useGetPokemonsPagination";
 import SpinnerPersonalizado from "../common/SpinnerPersonalizado";

@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import DescripcionPokemon from "./DescripcionPokemon";
 import TiposTraducidos from "./tipos";
-import Stats from "./Stats";
+import Stats from "./Estadisticas";
 import HabilidadPokemon from "./HabilidadPokemon";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
 import styled from "@emotion/styled";
