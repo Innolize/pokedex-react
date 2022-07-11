@@ -5,12 +5,12 @@ import DescripcionPokemon from "./DescripcionPokemon";
 import TiposTraducidos from "./tipos";
 import Stats from "./Stats";
 import HabilidadPokemon from "./HabilidadPokemon";
-import { primerLetraMayus } from "../../utils/primerLetraMayus";
 import { useQuery } from "react-query";
 import { obtenerPokemon } from "../../api/getPokemon";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
 import styled from "@emotion/styled";
 import NombrePokemon from "./NombrePokemon";
+import { PesoAltura } from "./PesoAlturaPokemon";
 
 const PokemonContainer = styled(Container)`
   display: flex;
@@ -82,14 +82,7 @@ const Pokemon = () => {
               <Stats stats={data.stats}></Stats>
             </Col>
             <Col>
-              <div>
-                <p>
-                  <strong>Peso:</strong> {data.peso / 10}Kg
-                </p>
-              </div>
-              <div>
-                <strong>Altura:</strong> {data.altura / 10} m
-              </div>
+              <PesoAltura altura={data.altura} peso={data.peso}></PesoAltura>
               <div>
                 <HabilidadPokemon
                   habilidades={data.habilidades}

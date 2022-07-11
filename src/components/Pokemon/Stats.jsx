@@ -11,9 +11,9 @@ const estadistica = [
 
 const Stats = ({ stats }) => {
   return estadistica.map((stat, i) => (
-    <p key={i}>
+    <ul key={i}>
       <strong>{estadistica[i]}</strong>:{stats[i].base_stat}
-    </p>
+    </ul>
   ));
 };
 
