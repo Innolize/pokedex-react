@@ -11,7 +11,9 @@ import { obtenerPokemon } from "../../api/getPokemon";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
 import styled from "@emotion/styled";
 
-const PokemonContainer = styled(Container)``;
+const PokemonContainer = styled(Container)`
+  display: flex;
+`;
 
 const ContenedorSpinner = styled.div`
   display: flex;
@@ -25,7 +27,19 @@ const StyledSpinner = styled(Spinner)`
   height: 5rem;
 `;
 
-const Pokemon = ({ pokemon, id }) => {
+const ImagenPokemon = styled.img`
+  width: 100%;
+`;
+
+const ColumnaIzquierda = styled(Col)``;
+
+const ColumnaDerecha = styled(Col)`
+  background-color: gray;
+  color: black;
+  text-align: left;
+`;
+
+const Pokemon = () => {
   const { pokemonSeleccionado } = useParams();
   const { isSuccess, data, isLoading, isError } = useQuery(["pokemon"], () =>
     obtenerPokemon(pokemonSeleccionado)
@@ -34,8 +48,7 @@ const Pokemon = ({ pokemon, id }) => {
   if (isLoading) {
     return (
       <ContenedorSpinner>
-        <StyledSpinner animation="border" role="status">
-        </StyledSpinner>
+        <StyledSpinner animation="border" role="status"></StyledSpinner>
       </ContenedorSpinner>
     );
   }
@@ -47,55 +60,48 @@ const Pokemon = ({ pokemon, id }) => {
   if (isSuccess) {
     return (
       <PokemonContainer>
-        <Row style={{ width: "100%" }}>
-          <Col>
-            <img
-              style={{ width: "100%" }}
-              src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${numeroTresCifras(
-                data.id
-              )}.png`}
-              alt={pokemon}
-            ></img>
-          </Col>
-          <Col
-            style={{
-              backgroundColor: "gray",
-              color: "black",
-              textAlign: "left",
-            }}
-          >
-            <div style={{ margin: "1em", textAlign: "center" }}>
-              <h3>
-                Nº{data.id} {primerLetraMayus(data.nombre)}
-              </h3>
-            </div>
-            <TiposTraducidos tipos={data.tipos}></TiposTraducidos>
-            <DescripcionPokemon
-              descripcion={data.descripcion}
-            ></DescripcionPokemon>
+        <ColumnaIzquierda>
+          <ImagenPokemon
+            src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${numeroTresCifras(
+              data.id
+            )}.png`}
+            alt={data.nombre}
+            title={data.nombre}
+          ></ImagenPokemon>
+        </ColumnaIzquierda>
+        <ColumnaDerecha
+        >
+          <div style={{ margin: "1em", textAlign: "center" }}>
+            <h3>
+              Nº{data.id} {primerLetraMayus(data.nombre)}
+            </h3>
+          </div>
+          <TiposTraducidos tipos={data.tipos}></TiposTraducidos>
+          <DescripcionPokemon
+            descripcion={data.descripcion}
+          ></DescripcionPokemon>
 
-            <Row style={{ paddingTop: "10px" }}>
-              <Col>
-                <Stats stats={data.stats}></Stats>
-              </Col>
-              <Col>
-                <div>
-                  <p>
-                    <strong>Peso:</strong> {data.peso / 10}Kg
-                  </p>
-                </div>
-                <div>
-                  <strong>Altura:</strong> {data.altura / 10} m
-                </div>
-                <div>
-                  <HabilidadPokemon
-                    habilidades={data.habilidades}
-                  ></HabilidadPokemon>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+          <Row style={{ paddingTop: "10px" }}>
+            <Col>
+              <Stats stats={data.stats}></Stats>
+            </Col>
+            <Col>
+              <div>
+                <p>
+                  <strong>Peso:</strong> {data.peso / 10}Kg
+                </p>
+              </div>
+              <div>
+                <strong>Altura:</strong> {data.altura / 10} m
+              </div>
+              <div>
+                <HabilidadPokemon
+                  habilidades={data.habilidades}
+                ></HabilidadPokemon>
+              </div>
+            </Col>
+          </Row>
+        </ColumnaDerecha>
       </PokemonContainer>
     );
   }
