@@ -10,6 +10,7 @@ const ContenedorListado = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  min-height: 320px;
 `;
 
 const ContenedorCartaPokemon = styled.div`

@@ -1,26 +1,28 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useQuery } from "react-query";
 import { getPokemons } from "../../api/getPokemons";
+import SpinnerPersonalizado from "../common/SpinnerPersonalizado";
 import BuscadorPokemon from "./BuscadorPokemon";
 import ListadoPokemon from "./ListadoPokemon";
 import Paginador from "./Paginador";
 
 const Pokedex = () => {
-  const [valorBusqueda, setValorBusqueda] = useState("");
-  const [pokemones, setPokemones] = useState([]);
-  const [matchPokemones, setMatchPokemones] = useState([]);
   const POKEMONES_POR_PAGINA = 20;
   const TOTAL_POKEMONES = "807";
-  const [offset, setOffset] = useState(0);
-  const [pokemonesPokedex, setPokemonesPokedex] = useState([]);
+  const [valorBusqueda, setValorBusqueda] = useState("");
+  const [matchPokemones, setMatchPokemones] = useState([]);
+  const {
+    isSuccess,
+    data: pokemones,
+    isLoading
+  } = useQuery(["total-pokemons"], () => getPokemons(TOTAL_POKEMONES));
 
-  // Busca pokemones al montar componente
-  useEffect(() => {
-    const fetchPokemons = async () => {
-      const respuesta = await getPokemons(TOTAL_POKEMONES);
-      setPokemones(respuesta);
-    };
-    fetchPokemons();
-  }, []);
+  const [offset, setOffset] = useState(0);
+
+  const { data: pokemonesPaginacion } = useQuery(
+    [`${offset}-${offset + POKEMONES_POR_PAGINA}`],
+    () => getPokemons(POKEMONES_POR_PAGINA, offset)
+  );
 
   const buscarPokemons = useCallback(() => {
     const pokemonesEncontrados = pokemones.filter(
@@ -39,21 +41,11 @@ const Pokedex = () => {
       if (valorBusqueda !== "") {
         buscarPokemons();
       } else {
-        setMatchPokemones(pokemonesPokedex);
+        setMatchPokemones(pokemonesPaginacion);
       }
     }, 500);
     return () => clearTimeout(timeout);
-  }, [valorBusqueda, pokemonesPokedex, buscarPokemons]);
-
-  //busca pokemones dependiendo de paginacion
-
-  useEffect(() => {
-    const fetchPokemonsPokedex = async () => {
-      const respuesta = await getPokemons(POKEMONES_POR_PAGINA, offset);
-      setPokemonesPokedex(respuesta);
-    };
-    fetchPokemonsPokedex();
-  }, [offset]);
+  }, [valorBusqueda, buscarPokemons, pokemonesPaginacion]);
 
   const botonAnteriorOnClick = () => {
     offset !== 0 && setOffset(offset - POKEMONES_POR_PAGINA);
@@ -62,26 +54,34 @@ const Pokedex = () => {
   const botonSiguienteOnClick = () => {
     offset < 807 && setOffset(offset + POKEMONES_POR_PAGINA);
   };
-  return (
-    <>
-      <BuscadorPokemon
-        value={valorBusqueda}
-        onChangeBusqueda={(e) => setValorBusqueda(e.target.value)}
-      />
 
-      <ListadoPokemon listaPokemones={matchPokemones} />
-      {valorBusqueda === "" && (
-        <Paginador
-          botonAnterior={botonAnteriorOnClick}
-          botonSiguiente={botonSiguienteOnClick}
-          totalPokemones={TOTAL_POKEMONES}
-          pokemonesPorPagina={POKEMONES_POR_PAGINA}
-          offset={offset}
-          itemOnClick={setOffset}
+  if (isLoading) {
+    return <SpinnerPersonalizado></SpinnerPersonalizado>;
+  }
+
+  if (isSuccess) {
+    return (
+      <>
+        <BuscadorPokemon
+          value={valorBusqueda}
+          onChangeBusqueda={(e) => setValorBusqueda(e.target.value)}
         />
-      )}
-    </>
-  );
+
+        <ListadoPokemon listaPokemones={matchPokemones} />
+        {valorBusqueda === "" && (
+          <Paginador
+            botonAnterior={botonAnteriorOnClick}
+            botonSiguiente={botonSiguienteOnClick}
+            totalPokemones={TOTAL_POKEMONES}
+            pokemonesPorPagina={POKEMONES_POR_PAGINA}
+            offset={offset}
+            itemOnClick={setOffset}
+          />
+        )}
+      </>
+    );
+  }
+  return null;
 };
 
 export default Pokedex;
