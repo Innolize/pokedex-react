@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import Pokedex from "./components/Inicio/Pokedex";
 import Pokemon from "./components/Pokemon/Pokemon";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const Header = styled.div`
   width: 100%;
@@ -39,8 +40,8 @@ const Wrapper = styled.div`
 `;
 
 const Inicio = styled.h3`
-  margin:10px;
-`
+  margin: 10px;
+`;
 
 const queryClient = new QueryClient();
 
@@ -65,6 +66,7 @@ function App() {
             </Layout>
           </Router>
         </Wrapper>
+        <ReactQueryDevtools></ReactQueryDevtools>
       </QueryClientProvider>
     </>
   );

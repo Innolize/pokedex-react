@@ -34,8 +34,9 @@ const Separador = styled.br``;
 
 const Pokemon = () => {
   const { pokemonSeleccionado } = useParams();
-  const { isSuccess, data, isLoading, isError } = useQuery(["pokemon"], () =>
-    obtenerPokemon(pokemonSeleccionado)
+  const { isSuccess, data, isLoading, isError } = useQuery(
+    [`pokemon-${pokemonSeleccionado}`],
+    () => obtenerPokemon(pokemonSeleccionado)
   );
 
   if (isLoading) {
