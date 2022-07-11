@@ -1,22 +1,18 @@
-import React from 'react'
-import { useFetchReducer } from '../../customHooks/useFetch';
-import { obtenerDescripcion } from '../../utilidades'
-import { Spinner } from 'react-bootstrap'
+import styled from "@emotion/styled";
+import React from "react";
 
+const ContenedorDescripcionPokemon = styled.div``;
+const Descripcion = styled.p`
+  text-align: center;
+  margin-top: 1rem;
+`;
 
-export const DescripcionPokemon = ({ id }) => {
-    const { data, loading, error } = useFetchReducer(obtenerDescripcion, id)
+export const DescripcionPokemon = ({ descripcion }) => {
+  return (
+    <ContenedorDescripcionPokemon>
+      <Descripcion>{descripcion}</Descripcion>
+    </ContenedorDescripcionPokemon>
+  );
+};
 
-    if (loading)
-        return (
-            <Spinner animation="border" role="status">
-                <span className="sr-only">Loading...</span>
-            </Spinner>)
-    if (error)
-        return (<div>error</div>)
-    if (data)
-        console.log(data)
-    return (<div>{data.flavor_text}</div>)
-}
-
-export default DescripcionPokemon
+export default DescripcionPokemon;
