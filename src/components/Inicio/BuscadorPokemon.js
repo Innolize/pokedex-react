@@ -19,7 +19,7 @@ const BuscadorPokemon = ({ value, onChangeBusqueda }) => {
   return (
     <ContenedorBuscadorPokemon>
       <ImagenLogoPokemon
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1920px-International_Pok%C3%A9mon_logo.svg.png"
+        src="./pokemon-logo/pokelogo.png"
         alt="pokemon-logo"
       />
       <InputBusquedaPokemon
