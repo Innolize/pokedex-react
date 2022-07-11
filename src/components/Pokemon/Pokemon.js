@@ -83,11 +83,10 @@ const Pokemon = () => {
             </Col>
             <Col>
               <PesoAltura altura={data.altura} peso={data.peso}></PesoAltura>
-              <div>
-                <HabilidadPokemon
-                  habilidades={data.habilidades}
-                ></HabilidadPokemon>
-              </div>
+              <br></br>
+              <HabilidadPokemon
+                habilidades={data.habilidades}
+              ></HabilidadPokemon>
             </Col>
           </Row>
         </ColumnaDerecha>
