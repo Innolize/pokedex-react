@@ -10,6 +10,7 @@ import { useQuery } from "react-query";
 import { obtenerPokemon } from "../../api/getPokemon";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
 import styled from "@emotion/styled";
+import NombrePokemon from "./NombrePokemon";
 
 const PokemonContainer = styled(Container)`
   display: flex;
@@ -69,13 +70,8 @@ const Pokemon = () => {
             title={data.nombre}
           ></ImagenPokemon>
         </ColumnaIzquierda>
-        <ColumnaDerecha
-        >
-          <div style={{ margin: "1em", textAlign: "center" }}>
-            <h3>
-              Nº{data.id} {primerLetraMayus(data.nombre)}
-            </h3>
-          </div>
+        <ColumnaDerecha>
+          <NombrePokemon nombre={data.nombre} id={data.id}></NombrePokemon>
           <TiposTraducidos tipos={data.tipos}></TiposTraducidos>
           <DescripcionPokemon
             descripcion={data.descripcion}
