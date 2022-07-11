@@ -15,7 +15,7 @@ const ContenedorBuscadorPokemon = styled.div`
   flex-direction: column;
 `;
 
-const BuscadorPokemon = ({ onClick, value, onChangeBusqueda }) => {
+const BuscadorPokemon = ({ value, onChangeBusqueda }) => {
   return (
     <ContenedorBuscadorPokemon>
       <ImagenLogoPokemon
