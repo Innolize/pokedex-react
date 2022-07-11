@@ -5,13 +5,12 @@ import DescripcionPokemon from "./DescripcionPokemon";
 import TiposTraducidos from "./tipos";
 import Stats from "./Stats";
 import HabilidadPokemon from "./HabilidadPokemon";
-import { useQuery } from "react-query";
-import { obtenerPokemon } from "../../api/getPokemon";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
 import styled from "@emotion/styled";
 import NombrePokemon from "./NombrePokemon";
 import { PesoAltura } from "./PesoAlturaPokemon";
 import SpinnerPersonalizado from "../common/SpinnerPersonalizado";
+import { useGetPokemon } from "../../customHooks/useGetPokemon";
 
 const PokemonContainer = styled(Container)`
   display: flex;
@@ -34,10 +33,8 @@ const Separador = styled.br``;
 
 const Pokemon = () => {
   const { pokemonSeleccionado } = useParams();
-  const { isSuccess, data, isLoading, isError } = useQuery(
-    [`pokemon-${pokemonSeleccionado}`],
-    () => obtenerPokemon(pokemonSeleccionado)
-  );
+  const { isSuccess, data, isLoading, isError } =
+    useGetPokemon(pokemonSeleccionado);
 
   if (isLoading) {
     return <SpinnerPersonalizado></SpinnerPersonalizado>;

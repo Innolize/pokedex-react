@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useQuery } from "react-query";
 import { getPokemons } from "../../api/getPokemons";
+import { useGetPokemons } from "../../customHooks/useGetPokemons";
+import { useGetPokemonsPagination } from "../../customHooks/useGetPokemonsPagination";
 import SpinnerPersonalizado from "../common/SpinnerPersonalizado";
 import BuscadorPokemon from "./BuscadorPokemon";
 import ListadoPokemon from "./ListadoPokemon";
@@ -9,19 +11,17 @@ import Paginador from "./Paginador";
 const Pokedex = () => {
   const POKEMONES_POR_PAGINA = 20;
   const TOTAL_POKEMONES = "807";
+  const [offset, setOffset] = useState(0);
   const [valorBusqueda, setValorBusqueda] = useState("");
   const [matchPokemones, setMatchPokemones] = useState([]);
   const {
     isSuccess,
     data: pokemones,
-    isLoading
-  } = useQuery(["total-pokemons"], () => getPokemons(TOTAL_POKEMONES));
-
-  const [offset, setOffset] = useState(0);
-
-  const { data: pokemonesPaginacion } = useQuery(
-    [`${offset}-${offset + POKEMONES_POR_PAGINA}`],
-    () => getPokemons(POKEMONES_POR_PAGINA, offset)
+    isLoading,
+  } = useGetPokemons(TOTAL_POKEMONES);
+  const { data: pokemonesPaginacion } = useGetPokemonsPagination(
+    POKEMONES_POR_PAGINA,
+    offset
   );
 
   const buscarPokemons = useCallback(() => {
