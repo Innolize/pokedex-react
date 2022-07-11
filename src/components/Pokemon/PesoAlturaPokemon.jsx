@@ -7,8 +7,8 @@ const Lista = styled.ul``;
 const Linea = styled.p``;
 
 export const PesoAltura = ({ peso, altura }) => {
-  const alturaFinal = `${altura / 10} m`;
-  const pesoFinal = `${peso} Kg`;
+  const alturaFinal = ` ${altura / 10} m`;
+  const pesoFinal = ` ${peso} Kg`;
 
   return (
     <ContenedorPesoAltura>
@@ -17,7 +17,7 @@ export const PesoAltura = ({ peso, altura }) => {
           <strong>Peso</strong>:{pesoFinal}
         </Linea>
         <Linea>
-          <strong>Altura</strong>: {alturaFinal}
+          <strong>Altura</strong>:{alturaFinal}
         </Linea>
       </Lista>
     </ContenedorPesoAltura>

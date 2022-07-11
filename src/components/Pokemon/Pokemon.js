@@ -14,6 +14,7 @@ import { PesoAltura } from "./PesoAlturaPokemon";
 
 const PokemonContainer = styled(Container)`
   display: flex;
+  margin-top: 1rem;
 `;
 
 const ContenedorSpinner = styled.div`
@@ -39,6 +40,8 @@ const ColumnaDerecha = styled(Col)`
   color: black;
   text-align: left;
 `;
+
+const Separador = styled.br``;
 
 const Pokemon = () => {
   const { pokemonSeleccionado } = useParams();
@@ -83,7 +86,7 @@ const Pokemon = () => {
             </Col>
             <Col>
               <PesoAltura altura={data.altura} peso={data.peso}></PesoAltura>
-              <br></br>
+              <Separador></Separador>
               <HabilidadPokemon
                 habilidades={data.habilidades}
               ></HabilidadPokemon>
