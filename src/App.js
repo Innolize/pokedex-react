@@ -66,7 +66,7 @@ function App() {
             </Layout>
           </Router>
         </Wrapper>
-        <ReactQueryDevtools></ReactQueryDevtools>
+        {/* <ReactQueryDevtools></ReactQueryDevtools> */}
       </QueryClientProvider>
     </>
   );
