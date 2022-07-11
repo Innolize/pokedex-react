@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import DescripcionPokemon from "./DescripcionPokemon";
 import TiposTraducidos from "./tipos";
@@ -11,22 +11,11 @@ import { numeroTresCifras } from "../../utils/numeroTresCifras";
 import styled from "@emotion/styled";
 import NombrePokemon from "./NombrePokemon";
 import { PesoAltura } from "./PesoAlturaPokemon";
+import SpinnerPersonalizado from "../common/SpinnerPersonalizado";
 
 const PokemonContainer = styled(Container)`
   display: flex;
   margin-top: 1rem;
-`;
-
-const ContenedorSpinner = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 600px;
-`;
-
-const StyledSpinner = styled(Spinner)`
-  width: 5rem;
-  height: 5rem;
 `;
 
 const ImagenPokemon = styled.img`
@@ -50,11 +39,7 @@ const Pokemon = () => {
   );
 
   if (isLoading) {
-    return (
-      <ContenedorSpinner>
-        <StyledSpinner animation="border" role="status"></StyledSpinner>
-      </ContenedorSpinner>
-    );
+    return <SpinnerPersonalizado></SpinnerPersonalizado>;
   }
 
   if (isError) {
