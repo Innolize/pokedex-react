@@ -10,7 +10,7 @@ const ContenedorTipos = styled.div`
   justify-content: center;
 `;
 
-const TiposTraducidos = ({ tipos }) => {
+export const Tipos = ({ tipos }) => {
   return (
     <ContenedorTipos>
       {tipos.map((x, i) => (
@@ -24,5 +24,3 @@ const TiposTraducidos = ({ tipos }) => {
     </ContenedorTipos>
   );
 };
-
-export default TiposTraducidos;

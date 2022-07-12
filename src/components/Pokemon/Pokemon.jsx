@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import DescripcionPokemon from "./DescripcionPokemon";
-import TiposTraducidos from "./Tipos";
+import Tipos from "./Tipos";
 import Stats from "./Estadisticas";
 import HabilidadPokemon from "./HabilidadPokemon";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
@@ -58,7 +58,7 @@ const Pokemon = () => {
         </ColumnaIzquierda>
         <ColumnaDerecha>
           <NombrePokemon nombre={data.nombre} id={data.id}></NombrePokemon>
-          <TiposTraducidos tipos={data.tipos}></TiposTraducidos>
+          <Tipos tipos={data.tipos}></Tipos>
           <DescripcionPokemon
             descripcion={data.descripcion}
           ></DescripcionPokemon>
