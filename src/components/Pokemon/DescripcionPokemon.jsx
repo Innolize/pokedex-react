@@ -14,5 +14,3 @@ export const DescripcionPokemon = ({ descripcion }) => {
     </ContenedorDescripcionPokemon>
   );
 };
-
-export default DescripcionPokemon;
