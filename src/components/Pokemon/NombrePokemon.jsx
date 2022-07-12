@@ -9,7 +9,7 @@ const ContenedorNombre = styled.div`
 
 const Titulo = styled.h3``;
 
-function NombrePokemon({ nombre, id }) {
+export const NombrePokemon = ({ nombre, id }) => {
   return (
     <ContenedorNombre>
       <Titulo>
@@ -17,6 +17,4 @@ function NombrePokemon({ nombre, id }) {
       </Titulo>
     </ContenedorNombre>
   );
-}
-
-export default NombrePokemon;
+};

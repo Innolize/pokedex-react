@@ -1,13 +1,13 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import DescripcionPokemon from "./DescripcionPokemon";
-import Tipos from "./Tipos";
+import { DescripcionPokemon } from "./DescripcionPokemon";
+import { Tipos } from "./Tipos";
 import { Estadisticas } from "./Estadisticas";
-import HabilidadPokemon from "./HabilidadPokemon";
+import { HabilidadPokemon } from "./HabilidadPokemon";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
 import styled from "@emotion/styled";
-import NombrePokemon from "./NombrePokemon";
+import { NombrePokemon } from "./NombrePokemon";
 import { PesoAltura } from "./PesoAlturaPokemon";
 import SpinnerPersonalizado from "../common/SpinnerPersonalizado";
 import { useGetPokemon } from "../../customHooks/useGetPokemon";
