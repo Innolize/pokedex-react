@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import DescripcionPokemon from "./DescripcionPokemon";
 import Tipos from "./Tipos";
-import Stats from "./Estadisticas";
+import { Estadisticas } from "./Estadisticas";
 import HabilidadPokemon from "./HabilidadPokemon";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
 import styled from "@emotion/styled";
@@ -65,7 +65,7 @@ const Pokemon = () => {
 
           <Row style={{ paddingTop: "10px" }}>
             <Col>
-              <Stats stats={data.stats}></Stats>
+              <Estadisticas stats={data.stats}></Estadisticas>
             </Col>
             <Col>
               <PesoAltura altura={data.altura} peso={data.peso}></PesoAltura>
