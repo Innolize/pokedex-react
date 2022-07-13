@@ -19,7 +19,7 @@ export const obtenerPokemon = async (id) => {
     });
     return newPokemon;
   } catch (err) {
-    throw Error(err);
+    throw err;
   }
 };
 

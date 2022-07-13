@@ -16,25 +16,23 @@ const getDescripcion = (req, res, ctx) => {
 
 const getTipos = (req, res, ctx) => {
   const { id } = req.params;
-  console.log(id);
   if (id === "4") {
     return res(ctx.json(tipoCuatro));
   } else if (id === "12") {
     return res(ctx.json(tipoDoce));
   } else {
-    console.log("aca tiro error");
+    console.log("nunca deberia ocurrir");
   }
 };
 
 const getHabilidades = (req, res, ctx) => {
   const { id } = req.params;
-  console.log(id);
   if (id === "34") {
     return res(ctx.json(habilidad34));
   } else if (id === "65") {
     return res(ctx.json(habilidad65));
   } else {
-    console.log("aca tiro error");
+    console.log("nunca deberia ocurrir");
   }
 };
 
