@@ -11,6 +11,7 @@ import { NombrePokemon } from "./NombrePokemon";
 import { PesoAltura } from "./PesoAlturaPokemon";
 import SpinnerPersonalizado from "../common/SpinnerPersonalizado";
 import { useGetPokemon } from "../../customHooks/useGetPokemon";
+import { APIError } from "../common/APIError";
 
 const PokemonContainer = styled(Container)`
   display: flex;
@@ -33,15 +34,14 @@ const Separador = styled.br``;
 
 export const Pokemon = () => {
   const { id } = useParams();
-  const { isSuccess, data, isLoading, isError } =
-    useGetPokemon(id);
+  const { isSuccess, data, isLoading, isError } = useGetPokemon(id);
 
   if (isLoading) {
     return <SpinnerPersonalizado></SpinnerPersonalizado>;
   }
 
   if (isError) {
-    return <div>Error</div>;
+    return <APIError></APIError>;
   }
 
   if (isSuccess) {
