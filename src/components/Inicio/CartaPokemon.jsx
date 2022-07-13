@@ -2,6 +2,7 @@ import React from "react";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
 import { primerLetraMayus } from "../../utils/primerLetraMayus";
 import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
 
 const ContenedorCartaPokemon = styled.div`
   margin: 2.5px;
