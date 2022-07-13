@@ -15,20 +15,16 @@ const ContenedorBuscadorPokemon = styled.div`
   flex-direction: column;
 `;
 
-const BuscadorPokemon = ({ value, onChangeBusqueda }) => {
+export const BuscadorPokemon = ({ value, onChangeBusqueda }) => {
   return (
     <ContenedorBuscadorPokemon>
-      <ImagenLogoPokemon
-        src="./pokemon-logo/pokelogo.png"
-        alt="pokemon-logo"
-      />
+      <ImagenLogoPokemon src="./pokemon-logo/pokelogo.png" alt="pokemon-logo" />
       <InputBusquedaPokemon
         type="text"
         value={value}
         onChange={onChangeBusqueda}
+        placeholder="Busca un pokémon!"
       ></InputBusquedaPokemon>
     </ContenedorBuscadorPokemon>
   );
 };
-
-export default BuscadorPokemon;
