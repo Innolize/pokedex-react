@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import Pokedex from "./components/Inicio/Pokedex";
-import Pokemon from "./components/Pokemon/Pokemon";
+import { Pokemon } from "./components/Pokemon/Pokemon";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
@@ -60,7 +60,7 @@ function App() {
               <Route path="/" exact>
                 <Pokedex></Pokedex>
               </Route>
-              <Route path="/pokemon/:pokemonSeleccionado">
+              <Route path="/pokemon/:id">
                 <Pokemon></Pokemon>
               </Route>
             </Layout>

@@ -31,10 +31,10 @@ const ColumnaDerecha = styled(Col)`
 
 const Separador = styled.br``;
 
-const Pokemon = () => {
-  const { pokemonSeleccionado } = useParams();
+export const Pokemon = () => {
+  const { id } = useParams();
   const { isSuccess, data, isLoading, isError } =
-    useGetPokemon(pokemonSeleccionado);
+    useGetPokemon(id);
 
   if (isLoading) {
     return <SpinnerPersonalizado></SpinnerPersonalizado>;
@@ -79,7 +79,4 @@ const Pokemon = () => {
       </PokemonContainer>
     );
   }
-  return null;
 };
-
-export default Pokemon;
