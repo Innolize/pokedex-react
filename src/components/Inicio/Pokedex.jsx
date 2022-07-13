@@ -3,7 +3,7 @@ import { useGetPokemons } from "../../customHooks/useGetPokemons";
 import { useGetPokemonsPagination } from "../../customHooks/useGetPokemonsPagination";
 import SpinnerPersonalizado from "../common/SpinnerPersonalizado";
 import { BuscadorPokemon } from "./BuscadorPokemon";
-import ListadoPokemon from "./ListadoPokemon";
+import { ListadoPokemon } from "./ListadoPokemon";
 import Paginador from "./Paginador";
 
 const Pokedex = () => {
