@@ -83,8 +83,6 @@ describe("Name of the group", () => {
     userEvent.click(barraDeBusqueda);
     userEvent.keyboard(TEXTO_POKEMON);
     await screen.findByAltText("charmander", { exact: false });
-
-    screen.debug();
   });
 
   it("Al presionar siguiente o anterior se renderizan nuevos pokemones ", async () => {
