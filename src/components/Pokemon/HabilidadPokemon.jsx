@@ -6,7 +6,7 @@ const ContenedorHabilidadPokemon = styled.div``;
 const Lista = styled.ul``;
 const Linea = styled.p``;
 
-const HabilidadPokemon = ({ habilidades }) => {
+export const HabilidadPokemon = ({ habilidades }) => {
   return (
     <ContenedorHabilidadPokemon>
       <Lista>
@@ -20,5 +20,3 @@ const HabilidadPokemon = ({ habilidades }) => {
     </ContenedorHabilidadPokemon>
   );
 };
-
-export default HabilidadPokemon;

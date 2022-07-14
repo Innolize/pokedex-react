@@ -1,17 +1,26 @@
 import axios from "axios";
-import Pokemon from '../entidades/pokemonClass'
+import Pokemon from "../entidades/pokemonClass";
 
 const BASE_POKEMON_URL = "https://pokeapi.co/api/v2/pokemon/";
 
 export const obtenerPokemon = async (id) => {
-  const pokemon = (await axios.get(BASE_POKEMON_URL + id)).data;
-  const data = await Promise.all([
-    obtenerDescripcion(pokemon.id),
-    fetchArrayTipos(pokemon.types),
-    fetchArrayHabilidades(pokemon.abilities),
-  ]);
-  const newPokemon = new Pokemon({...pokemon,abilities:data[2],types:data[1],description: data[0]})
-  return newPokemon;
+  try {
+    const pokemon = (await axios.get(BASE_POKEMON_URL + id)).data;
+    const data = await Promise.all([
+      obtenerDescripcion(pokemon.id),
+      fetchArrayTipos(pokemon.types),
+      fetchArrayHabilidades(pokemon.abilities),
+    ]);
+    const newPokemon = new Pokemon({
+      ...pokemon,
+      abilities: data[2],
+      types: data[1],
+      description: data[0],
+    });
+    return newPokemon;
+  } catch (err) {
+    throw err;
+  }
 };
 
 export const fetchArrayTipos = async (array) => {
@@ -28,7 +37,7 @@ export const fetchArrayTipos = async (array) => {
 
 export async function obtenerDescripcion(id) {
   const respuesta = (
-    await axios(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
+    await axios(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
   ).data;
 
   const descripcion = respuesta.flavor_text_entries.find(

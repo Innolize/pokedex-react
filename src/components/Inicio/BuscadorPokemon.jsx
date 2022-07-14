@@ -6,29 +6,27 @@ const ImagenLogoPokemon = styled.img`
 `;
 
 const InputBusquedaPokemon = styled.input`
+  margin-top: 1rem;
   width: 400px;
 `;
 
 const ContenedorBuscadorPokemon = styled.div`
+  margin-top: 1rem;
   width: 400px;
   display: flex;
   flex-direction: column;
 `;
 
-const BuscadorPokemon = ({ value, onChangeBusqueda }) => {
+export const BuscadorPokemon = ({ value, onChangeBusqueda }) => {
   return (
     <ContenedorBuscadorPokemon>
-      <ImagenLogoPokemon
-        src="./pokemon-logo/pokelogo.png"
-        alt="pokemon-logo"
-      />
+      <ImagenLogoPokemon src="./pokemon-logo/pokelogo.png" alt="pokemon-logo" />
       <InputBusquedaPokemon
         type="text"
         value={value}
         onChange={onChangeBusqueda}
+        placeholder="Busca un pokémon!"
       ></InputBusquedaPokemon>
     </ContenedorBuscadorPokemon>
   );
 };
-
-export default BuscadorPokemon;

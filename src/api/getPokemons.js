@@ -6,6 +6,5 @@ export const getPokemons = async (numeroPokemons, offset = 0) => {
       `https://pokeapi.co/api/v2/pokemon?limit=${numeroPokemons}&offset=${offset}`
     )
   ).data.results;
-  console.log(response);
   return response;
 };

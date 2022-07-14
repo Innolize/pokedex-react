@@ -9,7 +9,7 @@ const ContenedorDeItems = styled.ul`
   flex-wrap: wrap;
 `;
 
-const Paginador = ({
+export const Paginador = ({
   botonAnterior,
   botonSiguiente,
   totalPokemones,
@@ -61,5 +61,3 @@ const Paginador = ({
     </ContenedorDeItems>
   );
 };
-
-export default Paginador;

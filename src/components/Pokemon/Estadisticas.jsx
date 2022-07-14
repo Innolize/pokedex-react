@@ -15,7 +15,7 @@ const ContenedorEstadisticas = styled.div``;
 const Lista = styled.ul``;
 const Linea = styled.p``;
 
-const Stats = ({ stats }) => {
+export const Estadisticas = ({ stats }) => {
   return (
     <ContenedorEstadisticas>
       {estadistica.map((stat, i) => (
@@ -28,5 +28,3 @@ const Stats = ({ stats }) => {
     </ContenedorEstadisticas>
   );
 };
-
-export default Stats;

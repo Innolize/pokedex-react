@@ -1,16 +1,17 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import DescripcionPokemon from "./DescripcionPokemon";
-import TiposTraducidos from "./Tipos";
-import Stats from "./Estadisticas";
-import HabilidadPokemon from "./HabilidadPokemon";
+import { DescripcionPokemon } from "./DescripcionPokemon";
+import { Tipos } from "./Tipos";
+import { Estadisticas } from "./Estadisticas";
+import { HabilidadPokemon } from "./HabilidadPokemon";
 import { numeroTresCifras } from "../../utils/numeroTresCifras";
 import styled from "@emotion/styled";
-import NombrePokemon from "./NombrePokemon";
+import { NombrePokemon } from "./NombrePokemon";
 import { PesoAltura } from "./PesoAlturaPokemon";
 import SpinnerPersonalizado from "../common/SpinnerPersonalizado";
 import { useGetPokemon } from "../../customHooks/useGetPokemon";
+import { APIError } from "../common/APIError";
 
 const PokemonContainer = styled(Container)`
   display: flex;
@@ -24,24 +25,23 @@ const ImagenPokemon = styled.img`
 const ColumnaIzquierda = styled(Col)``;
 
 const ColumnaDerecha = styled(Col)`
-  background-color: gray;
+  background-color: white;
   color: black;
   text-align: left;
 `;
 
 const Separador = styled.br``;
 
-const Pokemon = () => {
-  const { pokemonSeleccionado } = useParams();
-  const { isSuccess, data, isLoading, isError } =
-    useGetPokemon(pokemonSeleccionado);
+export const Pokemon = () => {
+  const { id } = useParams();
+  const { isSuccess, data, isLoading, isError } = useGetPokemon(id);
 
   if (isLoading) {
     return <SpinnerPersonalizado></SpinnerPersonalizado>;
   }
 
   if (isError) {
-    return <div>Error</div>;
+    return <APIError></APIError>;
   }
 
   if (isSuccess) {
@@ -58,14 +58,14 @@ const Pokemon = () => {
         </ColumnaIzquierda>
         <ColumnaDerecha>
           <NombrePokemon nombre={data.nombre} id={data.id}></NombrePokemon>
-          <TiposTraducidos tipos={data.tipos}></TiposTraducidos>
+          <Tipos tipos={data.tipos}></Tipos>
           <DescripcionPokemon
             descripcion={data.descripcion}
           ></DescripcionPokemon>
 
           <Row style={{ paddingTop: "10px" }}>
             <Col>
-              <Stats stats={data.stats}></Stats>
+              <Estadisticas stats={data.stats}></Estadisticas>
             </Col>
             <Col>
               <PesoAltura altura={data.altura} peso={data.peso}></PesoAltura>
@@ -79,7 +79,4 @@ const Pokemon = () => {
       </PokemonContainer>
     );
   }
-  return null;
 };
-
-export default Pokemon;
