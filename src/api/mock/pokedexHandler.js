@@ -18,6 +18,6 @@ const offsetLimitPokemons = (req, res, ctx) => {
   }
 };
 
-export const pokedexHandlers = [
+export const handlers = [
   rest.get("https://pokeapi.co/api/v2/pokemon", offsetLimitPokemons),
 ];

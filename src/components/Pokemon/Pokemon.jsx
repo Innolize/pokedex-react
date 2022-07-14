@@ -25,7 +25,7 @@ const ImagenPokemon = styled.img`
 const ColumnaIzquierda = styled(Col)``;
 
 const ColumnaDerecha = styled(Col)`
-  background-color: gray;
+  background-color: white;
   color: black;
   text-align: left;
 `;

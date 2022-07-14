@@ -43,7 +43,6 @@ export const Pokedex = ({
       if (valorBusqueda !== "") {
         buscarPokemons();
       } else {
-        console.log(pokemonesPaginacion)
         setMatchPokemones(pokemonesPaginacion);
       }
     }, 500);

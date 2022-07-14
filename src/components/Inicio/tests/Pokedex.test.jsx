@@ -7,7 +7,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 import { setupServer } from "msw/node";
-import { pokedexHandlers } from "../../../api/mock/pokedexHandler";
+import { handlers } from "../../../api/mock/pokedexHandler";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
@@ -25,7 +25,7 @@ describe("Name of the group", () => {
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 
-  const server = setupServer(...pokedexHandlers);
+  const server = setupServer(...handlers);
 
   beforeAll(() => {
     queryClient.clear();

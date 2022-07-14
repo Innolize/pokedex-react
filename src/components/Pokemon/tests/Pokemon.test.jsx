@@ -2,7 +2,7 @@ import { Pokemon } from "../Pokemon";
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
-import { handlers } from "../../../api/mock/pokemonHandlers";
+import { handlers } from "../../../api/mock/pokemonHandler";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -47,7 +47,7 @@ describe("Pokemon", () => {
         <Pokemon></Pokemon>
       </ReactQueryWrapper>
     );
-    const element = await screen.findByText("Venusaur", { exact: false });
+    await screen.findByText("Venusaur", { exact: false });
   });
 
   it("Debe renderizar componente error al recibir error de la API ", async () => {
@@ -66,8 +66,6 @@ describe("Pokemon", () => {
         <Pokemon></Pokemon>
       </ReactQueryWrapper>
     );
-    const element = await screen.findByText(
-      "Ha habido un error, prueba recargando la página."
-    );
+    await screen.findByText("Ha habido un error, prueba recargando la página.");
   });
 });

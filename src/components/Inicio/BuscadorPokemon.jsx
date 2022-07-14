@@ -6,10 +6,12 @@ const ImagenLogoPokemon = styled.img`
 `;
 
 const InputBusquedaPokemon = styled.input`
+  margin-top: 1rem;
   width: 400px;
 `;
 
 const ContenedorBuscadorPokemon = styled.div`
+  margin-top: 1rem;
   width: 400px;
   display: flex;
   flex-direction: column;
