@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import { Pokedex } from "./components/Inicio/Pokedex";
 import { Pokemon } from "./components/Pokemon/Pokemon";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+// import { ReactQueryDevtools } from "react-query/devtools";
 
 const Header = styled.div`
   width: 100%;

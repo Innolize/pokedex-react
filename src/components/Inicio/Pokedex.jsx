@@ -7,7 +7,7 @@ import { ListadoPokemon } from "./ListadoPokemon";
 import { Paginador } from "./Paginador";
 
 const POKEMONES_POR_PAGINA = 20;
-const TOTAL_POKEMONES = "807";
+const TOTAL_POKEMONES = 807;
 
 export const Pokedex = ({
   pokemonesPorPagina = POKEMONES_POR_PAGINA,
@@ -20,9 +20,9 @@ export const Pokedex = ({
     isSuccess,
     data: pokemones,
     isLoading,
-  } = useGetPokemons(pokemonesPorPagina);
+  } = useGetPokemons(totalPokemones);
   const { data: pokemonesPaginacion } = useGetPokemonsPagination(
-    totalPokemones,
+    pokemonesPorPagina,
     offset
   );
 
@@ -43,6 +43,7 @@ export const Pokedex = ({
       if (valorBusqueda !== "") {
         buscarPokemons();
       } else {
+        console.log(pokemonesPaginacion)
         setMatchPokemones(pokemonesPaginacion);
       }
     }, 500);
@@ -50,11 +51,11 @@ export const Pokedex = ({
   }, [valorBusqueda, buscarPokemons, pokemonesPaginacion]);
 
   const botonAnteriorOnClick = () => {
-    offset !== 0 && setOffset(offset - totalPokemones);
+    offset !== 0 && setOffset(offset - pokemonesPorPagina);
   };
 
   const botonSiguienteOnClick = () => {
-    offset < 807 && setOffset(offset + totalPokemones);
+    offset < 807 && setOffset(offset + pokemonesPorPagina);
   };
 
   if (isLoading) {
@@ -74,8 +75,8 @@ export const Pokedex = ({
           <Paginador
             botonAnterior={botonAnteriorOnClick}
             botonSiguiente={botonSiguienteOnClick}
-            totalPokemones
-            pokemonesPorPagina
+            totalPokemones={totalPokemones}
+            pokemonesPorPagina={pokemonesPorPagina}
             offset={offset}
             itemOnClick={setOffset}
           />
