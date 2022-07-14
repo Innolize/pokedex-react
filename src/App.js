@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import Pokedex from "./components/Inicio/Pokedex";
+import { Pokedex } from "./components/Inicio/Pokedex";
 import { Pokemon } from "./components/Pokemon/Pokemon";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";

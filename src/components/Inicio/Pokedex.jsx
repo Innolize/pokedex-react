@@ -6,9 +6,13 @@ import { BuscadorPokemon } from "./BuscadorPokemon";
 import { ListadoPokemon } from "./ListadoPokemon";
 import { Paginador } from "./Paginador";
 
-const Pokedex = () => {
-  const POKEMONES_POR_PAGINA = 20;
-  const TOTAL_POKEMONES = "807";
+const POKEMONES_POR_PAGINA = 20;
+const TOTAL_POKEMONES = "807";
+
+export const Pokedex = ({
+  pokemonesPorPagina = POKEMONES_POR_PAGINA,
+  totalPokemones = TOTAL_POKEMONES,
+}) => {
   const [offset, setOffset] = useState(0);
   const [valorBusqueda, setValorBusqueda] = useState("");
   const [matchPokemones, setMatchPokemones] = useState([]);
@@ -16,9 +20,9 @@ const Pokedex = () => {
     isSuccess,
     data: pokemones,
     isLoading,
-  } = useGetPokemons(TOTAL_POKEMONES);
+  } = useGetPokemons(pokemonesPorPagina);
   const { data: pokemonesPaginacion } = useGetPokemonsPagination(
-    POKEMONES_POR_PAGINA,
+    totalPokemones,
     offset
   );
 
@@ -46,11 +50,11 @@ const Pokedex = () => {
   }, [valorBusqueda, buscarPokemons, pokemonesPaginacion]);
 
   const botonAnteriorOnClick = () => {
-    offset !== 0 && setOffset(offset - POKEMONES_POR_PAGINA);
+    offset !== 0 && setOffset(offset - totalPokemones);
   };
 
   const botonSiguienteOnClick = () => {
-    offset < 807 && setOffset(offset + POKEMONES_POR_PAGINA);
+    offset < 807 && setOffset(offset + totalPokemones);
   };
 
   if (isLoading) {
@@ -70,8 +74,8 @@ const Pokedex = () => {
           <Paginador
             botonAnterior={botonAnteriorOnClick}
             botonSiguiente={botonSiguienteOnClick}
-            totalPokemones={TOTAL_POKEMONES}
-            pokemonesPorPagina={POKEMONES_POR_PAGINA}
+            totalPokemones
+            pokemonesPorPagina
             offset={offset}
             itemOnClick={setOffset}
           />
@@ -79,7 +83,4 @@ const Pokedex = () => {
       </>
     );
   }
-  return null;
 };
-
-export default Pokedex;
