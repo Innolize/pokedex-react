@@ -1,8 +1,8 @@
 import { Pokemon } from "../Pokemon";
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
-import { findByText, render, screen } from "@testing-library/react";
-import { getHabilidadesError, handlers } from "../../../api/mock/handlers";
+import { render, screen } from "@testing-library/react";
+import { handlers } from "../../../api/mock/pokemonHandlers";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
 import { QueryClient, QueryClientProvider } from "react-query";

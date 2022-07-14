@@ -44,5 +44,8 @@
   "devDependencies": {
     "msw": "^0.43.1",
     "prettier": "2.7.1"
-  }
+  },
+  "resolutions": {
+    "autoprefixer": "10.4.5"
+}
 }

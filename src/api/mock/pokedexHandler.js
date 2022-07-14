@@ -20,13 +20,4 @@ const offsetLimitPokemons = (req, res, ctx) => {
 
 export const pokedexHandlers = [
   rest.get("https://pokeapi.co/api/v2/pokemon", offsetLimitPokemons),
-  // rest.get("https://pokeapi.co/api/v2/pokemon?limit=3&offset=0", getUnoATres),
-  // rest.get(
-  //   "https://pokeapi.co/api/v2/pokemon?limit=3&offset=3",
-  //   getCuatroASeis
-  // ),
-  // rest.get(
-  //   "https://pokeapi.co/api/v2/pokemon?limit=3&offset=6",
-  //   getSieteANueve
-  // ),
 ];
