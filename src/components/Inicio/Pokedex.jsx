@@ -4,7 +4,7 @@ import { useGetPokemonsPagination } from "../../customHooks/useGetPokemonsPagina
 import SpinnerPersonalizado from "../common/SpinnerPersonalizado";
 import { BuscadorPokemon } from "./BuscadorPokemon";
 import { ListadoPokemon } from "./ListadoPokemon";
-import Paginador from "./Paginador";
+import { Paginador } from "./Paginador";
 
 const Pokedex = () => {
   const POKEMONES_POR_PAGINA = 20;
